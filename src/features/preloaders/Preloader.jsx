@@ -1,6 +1,6 @@
-import "./generalPreloader.css"
+import "./preloader.css"
 
-export const GeneralPreloader = () => {
+export const Preloader = () => {
     return (  
         <div className="loader">
             <div></div>

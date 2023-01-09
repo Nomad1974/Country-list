@@ -2,12 +2,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { loadCountries, selectAllCountries, selectCountriesInfo } from "./countriesSlice";
+import { loadCountries, selectCountriesInfo, selectVisibleCountries } from "./countriesSlice";
+import { selectControls } from "../controls/controlsSlice";
 
 const useCountryList = () => {
     const dispatch = useDispatch();
-
-    const countries = useSelector(selectAllCountries);
+    const {search, region} = useSelector(selectControls);
+    const countries = useSelector(state => selectVisibleCountries(state, {search, region}));
     const {status, error, quantity} = useSelector(selectCountriesInfo);
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const useCountryList = () => {
         }
     }, [quantity, dispatch]);
 
-    return [countries, {status, error, quantity}];
+    return [countries, {status, error}];
 }
 
 export default useCountryList;

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Container } from './Container';
 import ThemeSwitcher from '../features/theme/ThemeSwitcher';
+import useCleanUp from '../features/controls/useCleanUp';
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -27,12 +28,14 @@ const Title = styled(Link).attrs({
 `;
 
 export const Header = () => {
+  // очистка фильтров в инпуте Search при клике на ссылку
+  const [cleanUp] = useCleanUp();
 
   return (
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Where is the world?</Title>
+          <Title onClick={cleanUp}>Where is the world?</Title>
           <ThemeSwitcher />
         </Wrapper>
       </Container>

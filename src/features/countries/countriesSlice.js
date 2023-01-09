@@ -38,9 +38,17 @@ const countrySlice = createSlice({
 
 export const countryReducer = countrySlice.reducer;
 // селекторы
-export const selectAllCountries = (state) => state.countries.entities;
+export const selectAllCountries = state => state.countries.entities;
 
-export const selectCountriesInfo = (state) => ({
+export const selectVisibleCountries = (state, {search = '', region = ''}) => {
+    // возвращаем ,отфильтрованное в нижнем регистре, название страны через содержание name
+    return state.countries.entities.filter(
+        (country) =>
+            country.name.toLowerCase().includes(search.toLocaleLowerCase()) && country.region.includes(region)
+    );
+}
+
+export const selectCountriesInfo = state => ({
     status: state.countries.status,
     error: state.countries.error,
     quantity: state.countries.entities.length,
