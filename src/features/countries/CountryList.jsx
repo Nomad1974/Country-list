@@ -14,7 +14,7 @@ export const CountryList = () => {
 
     return ( 
         <>
-            {error && <Error />}
+            {error && <Error error={error}/>}
             {status === 'loading' && <Preloader />}
             {status === 'received' && countries.length === 0 ? <SearchError /> : (
                     <List>
@@ -28,16 +28,16 @@ export const CountryList = () => {
                                         description: c.population.toLocaleString(),
                                     },
                                     {
+                                        title: 'Area',
+                                        description: c.area,
+                                    },
+                                    {
                                         title: 'Region',
                                         description: c.region,
                                     },
                                     {
                                         title: 'Capital',
                                         description: c.capital,
-                                    },
-                                    {
-                                        title: 'Area',
-                                        description: c.area,
                                     },
                                 ],
                             };

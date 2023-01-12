@@ -85,7 +85,7 @@ const Tag = styled.span`
   line-height: 1.5;
   cursor: pointer;
 `;
-
+// добавить площадь страны в список.(area);
 export const Info = (props) => {
   const {
     name,
@@ -93,6 +93,7 @@ export const Info = (props) => {
     flag,
     capital,
     population,
+    area,
     region,
     subregion,
     topLevelDomain,
@@ -115,6 +116,9 @@ export const Info = (props) => {
             </ListItem>
             <ListItem>
               <b>Population</b> {population}
+            </ListItem>
+            <ListItem>
+              <b>Area</b> {area}
             </ListItem>
             <ListItem>
               <b>Region:</b> {region}
