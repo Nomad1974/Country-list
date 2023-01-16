@@ -7,9 +7,17 @@ export const loadCountryWithName = createAsyncThunk(
         return client.get(api.searchByCountry(name));
     }
 );
+// получаем список стран соседей
+export const loadNeighborsWithBorder = createAsyncThunk(
+    'details/loadNeighbors',
+    (borders, {extra: {client, api}}) => {
+        return client.get(api.filterByCode(borders));
+    }
+);
 
 const initialState = {
     currentCountry: null,
+    neighbors: [],
     status: 'idle',
     error: null,
 };
@@ -34,6 +42,9 @@ const detailSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.payload || action.error.message;
             })
+            .addCase(loadNeighborsWithBorder.fulfilled, (state, action) => {
+                state.neighbors = action.payload.data.map(country => country.name);
+            })
     }
 });
 
@@ -42,3 +53,4 @@ export const detailsReducer = detailSlice.reducer;
 
 export const selectCurrentCountries = (state) => state.details.currentCountry;
 export const selectDetails = (state) => state.details;
+export const selectNeighbors = (state) => state.details.neighbors;
