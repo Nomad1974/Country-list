@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import useNeighbors from './useNeighbors';
 
@@ -108,6 +109,9 @@ export const Info = (props) => {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{name} detail page</title>
+      </Helmet>
       <InfoImage src={flag} alt={name} />
 
       <div>
