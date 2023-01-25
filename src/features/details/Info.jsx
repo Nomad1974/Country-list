@@ -165,7 +165,7 @@ export const Info = (props) => {
           ) : (
             <TagGroup>
               {neighbors.map((countryName) => (
-                <Tag key={countryName} onClick={() => push(`/country/${countryName}`)}>
+                <Tag key={countryName} onClick={() => push(`/country/${countryName.replace(/\s/gi, "_")}`)}>
                   {countryName}
                 </Tag>
               ))}
