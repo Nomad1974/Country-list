@@ -41,12 +41,13 @@ export const CountryList = () => {
                                     },
                                 ],
                             };
-
                         return (
                             <Card
                                 key={c.name}
-                                onClick={() => navigate(`/country/${c.name}`)}
+                                /* заменяем пробелы в URL на нижние подчёркивания */
+                                onClick={() => navigate(`/country/${c.name.replace(/\s/gi, "_")}`)}
                                 {...countryInfo}
+                                
                             />
                         );
                     })}

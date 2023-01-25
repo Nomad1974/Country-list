@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-//import { useSelector, useDispatch } from 'react-redux';
 
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
-///import { selectRegion, setRegion } from './controlsSlice';
+
 import useRegion from './useRegion';
 
 const optionsMap = {

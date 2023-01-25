@@ -4,7 +4,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const loadCountryWithName = createAsyncThunk(
     'details/loadCountriesWithName',
     (name, {extra:{client, api}}) => {
-        return client.get(api.searchByCountry(name));
+        // возвращаем пробелы в имя для отправки валидного запроса
+        return client.get(api.searchByCountry(name.replace(/_/g, " ")));
+        
     }
 );
 // получаем список стран соседей
